@@ -22,13 +22,21 @@ import ru.yandex.qatools.ashot.shooting.ShootingStrategies;
 @RestController
 public class IncomingRequest 	
 {
-	final String URL_VALIDATOR = "(https?:\\/\\/(?:www\\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\\.[^\\s]{2,}|www\\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\\.[^\\s]{2,}|https?:\\/\\/(?:www\\.|(?!www))[a-zA-Z0-9]+\\.[^\\s]{2,}|www\\.[a-zA-Z0-9]+\\.[^\\s]{2,})" ;
+	static final String URL_VALIDATOR = "(https?:\\/\\/(?:www\\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\\.[^\\s]{2,}|www\\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\\.[^\\s]{2,}|https?:\\/\\/(?:www\\.|(?!www))[a-zA-Z0-9]+\\.[^\\s]{2,}|www\\.[a-zA-Z0-9]+\\.[^\\s]{2,})" ;
+	static final String WEB_DRIVER = "src/main/resources/driver/chromedriver";
+	static final String WEB_DRIVER_WIN_EXT = ".exe";
 	
 	@GetMapping(value="get_screenshot",produces = MediaType.IMAGE_PNG_VALUE)
 	public @ResponseBody byte[]getURLRequest(@RequestParam String url, @RequestParam float scalling)
 	{
-		  WebDriver driver;                                   
-		  System.setProperty("webdriver.chrome.driver", "src/main/resources/driver/chromedriver"); // Set driver of browser (Here  chrome used.)
+		  WebDriver driver;       
+		  String osName = System.getProperty("os.name");
+		  System.setProperty("webdriver.chrome.driver", WEB_DRIVER);
+		  if(osName.contains("Windows"))
+		  {
+			  System.setProperty("webdriver.chrome.driver", WEB_DRIVER +  WEB_DRIVER_WIN_EXT);// Set driver of browser (Here  chrome ) for Windows.
+		  }
+		  
 		  //System.setProperty("webdriver.gecko.driver", "driver/geckodriver"); // Use for Firefox
 		  BufferedImage tempImage = null;
 		  ByteArrayOutputStream baos = null;
