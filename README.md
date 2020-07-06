@@ -9,3 +9,5 @@ How to use :
 3. Hit API GET domain:8080/get_screenshot?url=url&scalling=float_parameter
    scalling : This paramter use to scale screenshot according to device screen.
    Best values are 1.0 or 2.0 Try alternate.
+
+Demo screenshot is saved in URLScreenshotAPI/Screenshot/Demo.png
