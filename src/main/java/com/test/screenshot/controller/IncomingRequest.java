@@ -48,7 +48,6 @@ public class IncomingRequest
 		  else
 		  {
 			  driver=new ChromeDriver();  											// User for Chrome
-			  //driver = new FirefoxDriver();										// Use for Firefox
 			  driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);   
 			  driver.manage().window().maximize();                 
 			  driver.get(url);
